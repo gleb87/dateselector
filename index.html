@@ -9,9 +9,27 @@
 <body>
 
 <script type="text/template" id="date-selector-template">
-  /* шаблон для виджета */
-</script>
+<div class="date-selector">
+  <select class="year">
+  <% for (var i = yearFrom; i <= yearTo; i++) { %>
+    <option value="<%=i%>"><%=i%></option> 
+  <% }; %>
+  </select>
 
+  <select class="month">
+  <% for (var i = 0; i < monthNames.length; i++) { %>
+    <option value="<%=i%>"><%=monthNames[i]%></option> 
+  <% }; %>
+  </select>
+
+  <select class="day">
+  <% for (var i = 1; i <= monthLength; i++) { %>
+    <option value="<%=i%>"><%=i%></option> 
+  <% }; %>
+  </select>
+</div>
+</script>
+  
 <div id="selector-holder"></div>
 <div id="value">тут будет значение даты при выборе</div>
 
@@ -19,8 +37,8 @@
   var dateSelector = new DateSelector({ 
     yearFrom: 2010, 
     yearTo: 2020, 
-    value: new Date(2012, 2, 31), // 31 марта 2012
-    template: $('#date-selector-template').html()
+    value: new Date(2012, 2, 13), // 13 марта 2012
+    template: $('#date-selector-template').html(),
   });
 
   $('#selector-holder').append(dateSelector.getElement());
